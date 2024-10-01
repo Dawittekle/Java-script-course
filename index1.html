@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <h1>Hello Everyone , welcome to page!!!</h1>
+    <br>
+    <button style="background-color: brown;color :white; padding: 10px;cursor: pointer;" onclick="alert('nice Job')">Click Me</button>
+    <p>Adults plain cotton T-shirt</p>
+    <p> Price: $7.99</p>
+    <button style="background-color: yellow;" onclick="alert('Added')">
+        Add to cart</button>
+    <button style="background-color: orange;" onclick="console.log('loading...');alert('Purchased')">
+        Buy now</button>
+
+        <br><p>lesson on variable</p><br>
+
+        <p>Cart Quantity</p>
+        <button onclick="console.log(`Cart quantity: ${CartQuantity}`)">
+            Show Quantity</button>
+        <button onclick="CartQuantity=CartQuantity+1;console.log(`Cart quantity: ${CartQuantity}`)">
+            Add to Cart</button>
+        <button onclick="CartQuantity=CartQuantity+2;console.log(`Cart quantity: ${CartQuantity}`)">
+            +2</button>
+        <button onclick="CartQuantity=CartQuantity+3;console.log(`Cart quantity: ${CartQuantity}`)">
+            +3</button>
+        <button onclick="CartQuantity=0;console.log(`Cart was reset.`)">
+            Reset Cart</button>
+            <br>
+            <br><p>about object</p><br>
+    
+    <button class="hello-button">hello</button>
+</div>
+    <br><br><br><p>about DOM</p><br><br>
+
+    <p>YouTube Subscribe Button</p>
+    <button onclick="
+   subscribe();
+    " class="js-subscribe-button">Subscribe</button>
+
+
+
+
+
+    
+
+            
+            
+            
+            
+
+    <script>
+    /*
+
+     let CartQuantity = 0;
+        console.log(3>6);  
+        console.log(3>6+5); //return value first calculate plus then comparision 
+        function convert(length,from,to){
+            if(from==='miles'&&to=='km'){
+                length=length*1.6
+                alert(`length = ${length}km`);
+            }else if(from==='km' && to==="mile"){
+                length=length/1.6;
+                alert(`length= ${length}miles`)
+            }  else{
+                alert('invalid unit');
+            } 
+
+            }
+
+            const student={
+                name:'abebe',
+                age:30,
+                gender:"m"
+            };
+            console.log(student);
+            student.age=38;
+            console.log(student.age);
+            student.color="black";
+            console.log(student);
+            delete student.color;
+            console.log(student);
+
+
+            
+        const student2 = {
+            name: 'dawit',
+            age: 20,
+            gender: 'male',
+            acadamy:{
+                highSchool:'st. joseph',
+                college: 'Addis Ababa'
+            }
+        };
+        console.log(student2);
+        const jsonString=JSON.stringify(student2);
+        console.log(jsonString);
+        const convertedJson = JSON.parse(jsonString);
+        console.log(convertedJson);
+
+        const student3 = {
+            name:'lemma'
+        };
+
+        console.log('Hello'.toUpperCase())//this work because of auto boxing and special object wrap over string to use methed and object on it,
+        // auto boxing work with number and boolean also but not to undifiened and null
+        //object is a reference meaning object name is just reference position for where the data stored in memory
+        const obj =student3;//copy by reference
+
+        student3.name='kebede';//this is possible because we can change the value inside in bracket because object is only the refeence location so 
+        console.log(student3);//we can change values inside a bracket evenif it is const(only prevent us changing the reference of the varable)
+        const student4={
+            name:'kebede',
+            age:15
+        }
+        console.log(student3===student)//false even if have the same value because it only compare the reference not the value inside the object
+        //it will be true if they have the same reference
+
+        //const name =student4.name;//this and the code bellow are the same//only work name variable and name inside the object are same
+        const {name ,age}=student4;//called destructuring//good methode if we have many element
+        console.log(name);
+        console.log(age);
+
+        const student6 ={
+           // name:name//put value in name variable to this//same as code bellow
+           name, //called shorthand property
+            /*method:function function1(){     //it the same as code bellow
+                console.log('hey');
+            },
+            method(){
+                console.log('hey');
+            }
+
+        }*/
+
+        //DOM(Document object model)
+        /*//simple examples
+
+        document.title='lovely';
+        console.log(document.title);
+        console.log(document.body);
+        console.log(document.body.innerHTML);
+        console.log(document.querySelector('.hello-button'));*/
+    function subscribe(){
+            const buttonelement=document.querySelector('.js-subscribe-button');
+        if(buttonelement.innerHTML==='Subscribe'){
+            buttonelement.innerHTML = 'Subscribed';
+        }else{
+            buttonelement.innerHTML = 'Subscribe';
+        }
+    }
+
+      
+
+    </script>
+</body>
+</html>
