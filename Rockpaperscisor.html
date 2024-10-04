@@ -6,27 +6,70 @@
     <title>Rock paper Scissors</title>
 </head>
 <body>
-    <p>Rock Paper Scissor</p>
+    <style>
+        body{
+            background-color: rgb(25, 25, 25 );
+        }
+        p{
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .title{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        img{
+            height: 50px;
+        }
+        .button-design{
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            background-color: transparent;
+            margin-right: 10px;
+            border: 3px solid white;
+            cursor: pointer;
+            margin-bottom: 50px;
+        }
+        .reset-button{
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+
+            
+        }
+    </style>
+    <p class="title">Rock Paper Scissor</p>
     <button onclick="
     playGame('rock');
-    ">Rock</button>
+    " class="button-design"><img src="image/rock.png" alt="rock"></button>
 
     <button onclick="
     playGame('paper');
-    ">Paper</button>
+    " class="button-design"><img src="image/paper.png" alt="paper"></button>
 
     <button onclick="
     playGame('scissor');
-    ">Scissor</button>
+    " class="button-design"><img src="image/scissor.png" alt="scissor"></button>
+
+    <p class="result"></p>
+    <p class="moves"></p>
+
+    <p class="score"></p>
 
     <button onclick="
     score.win=0;score.lose=0;score.tie=0;
     localStorage.removeItem(score);
+    updateScore()
     
-    ">Rese the score</button>
+    " class="reset-button">Reset the score</button>
    
 
     <script>
+
         let score= JSON.parse(localStorage.getItem('score'))||{
         win:0,
         lose:0,
@@ -55,6 +98,12 @@
     return computerMove;
             
         }
+
+        function updateScore(){
+            document.querySelector('.score')
+             .innerHTML= `win: ${score.win} lose: ${score.lose} tie: ${score.tie}`;
+        }
+        updateScore();
 
     function playGame (playerMove)
         {
@@ -104,15 +153,18 @@
             }
             localStorage.setItem('score',JSON.stringify(score));
 
+            document.querySelector('.result')
+             .innerHTML = `you ${result} !!`;
 
-            alert(`the computer pick ${computerMove}, you ${result}.
-            win: ${score.win} lose: ${score.lose} tie: ${score.tie}`);
+             document.querySelector('.moves')
+              .innerHTML= `you :  <img src="image/${playerMove}.png"> computer :  <img src="image/${computerMove}.png">`;
+            updateScore();
+            /*alert(`the computer pick ${computerMove}, you ${result}.
+            win: ${score.win} lose: ${score.lose} tie: ${score.tie}`);*/
         }
 
         console.log(JSON.parse(localStorage.getItem('score')));
 
-        
-    
     </script>
 </body>
 </html>

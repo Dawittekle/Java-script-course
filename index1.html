@@ -6,6 +6,39 @@
     <title>Document</title>
 </head>
 <body>
+    <style>
+        .js-subscribe-button{
+             padding-top: 6px;
+             padding-bottom: 6px;
+             padding-left: 10px;
+             padding-right: 10px;
+             color:  white;
+             background-color: black;
+             border-radius: 20px;
+             border: none;
+
+        }
+        .click-subscribe{
+            color: black;
+            background-color: rgb(240, 240, 240);
+        }
+        p{
+             font-family: Arial, Helvetica, sans-serif;
+        }
+        .calculate-shipping{
+            background-color: rgb(22, 151, 22);
+            color: white;
+            padding: 10px;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .input-text{
+            padding: 9px;
+            font-size: 15px;
+
+        }
+    </style>
 <div>
     <h1>Hello Everyone , welcome to page!!!</h1>
     <br>
@@ -41,17 +74,86 @@
     <button onclick="
    subscribe();
     " class="js-subscribe-button">Subscribe</button>
+    <br><br>
+    <p>Amazon shipping calculator</p>
+    <input type="text" class="input-text" placeholder="cost of order" onkeydown="
+    enterkey(event);//always we need parameter when we use event listners
+    
+    ">
+    <button onclick="
+    calculate();
+   " class="calculate-shipping">Calculate</button>
 
+    <p class="result-value"></p>
+    <br><br>orher examples <br><br>
 
+    <p>Enter your name</p>
+    <input type="text" placeholder="name" class="input-name" onkeydown="
+    enterkey(event);
+    enterName();
+    ">
+    <button onclick="
+    enterName();
 
+    ">Enter</button>
+    <p class="display"></p>
 
+    <br><br>another examples <br><br>
+
+    <p>please, Choose</p>
+    <button class="b1" onclick="
+    document.querySelector('.rofclick')
+     .innerHTML=`you Choose DAWIT`;
 
     
+    ">DAWIT</button>
+    <button class="b2" onclick="
+        document.querySelector('.rofclick')
+     .innerHTML=`you Choose DEGAGA`;
+    
+    ">DEGAGA</button>
+    <p class="rofclick"></p>
 
-            
-            
-            
-            
+    <br>another one <br>
+
+    <p>enter text</p>
+    <input type="text" class="inputtxt" onkeyup="
+    updateText(Event);
+    ">
+    <p class="displayedtxt"></p>
+    <br>calculator <br> <br>
+    <button >Show Quantity</button>
+    <button onclick="
+    cart(1);
+    ">Add to Cart</button>
+    <button onclick="
+    cart(2);
+    ">+2</button>
+    <button onclick="
+    cart(3);
+    ">+3</button>
+    <button onclick="
+    cart(4);
+    ">+4</button>
+    <button onclick="
+    cart(5);
+    ">+5</button>
+    <button onclick="
+    cart(-1);
+    ">Remove from Cart</button>
+    <button onclick="
+    cart(-2)
+    ">-2</button>
+    <button onclick="
+    cart(-3);
+    ">-3</button>
+    <p class="cartquantity"></p>
+
+
+   
+
+
+     
 
     <script>
     /*
@@ -149,10 +251,55 @@
             const buttonelement=document.querySelector('.js-subscribe-button');
         if(buttonelement.innerHTML==='Subscribe'){
             buttonelement.innerHTML = 'Subscribed';
+            buttonelement.classList.add('click-subscribe')
         }else{
             buttonelement.innerHTML = 'Subscribe';
+            buttonelement.classList.remove('click-subscribe')
         }
     }
+
+    function calculate(){
+
+        const inputValue = document.querySelector('.input-text');
+        let cost =parseInt(inputValue.value);
+        if(cost<40){
+            cost =cost+10;
+        }else{
+            cost=cost;
+        }
+
+        document.querySelector('.result-value')
+         .innerHTML = `$${cost}`;
+
+    }
+    function enterkey(event){
+        if(event.key==='Enter'){
+        calculate();
+    }
+
+    }
+    function enterName(){
+        const name8 = document.querySelector('.input-name')
+        let name7 = name8.value;
+        document.querySelector('.display')
+         .innerHTML = `your name ${name7}`;
+        
+    }
+    function updateText(Event) {
+        const intxt = document.querySelector('.inputtxt');
+        const outtxt = document.querySelector('.displaytxt');
+        outtxt.textContent = intxt.value;
+    }
+    let initial =0;
+
+    function cart(number){
+       
+        document.querySelector('.cartquantity')
+         .innerHTML = `Cart Quantity : ${initial+number}`;
+
+    }
+
+     
 
       
 
