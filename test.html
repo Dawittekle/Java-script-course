@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Multiple Buttons</title>
+  <style>
+    .button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: 2px solid black;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+      margin: 10px;
+    }
+
+    .is-toggled {
+      background-color: green;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="button">Button 1</button>
+  <button class="button">Button 2</button>
+  <button class="button">Button 3</button>
+
+  <script>
+    // Function to toggle class for the specific button
+    function toggle(event) {
+      const button = event.target;  // The button that was clicked
+      if (button.classList.contains('is-toggled')) {
+        button.classList.remove('is-toggled');
+      } else {
+        button.classList.add('is-toggled');
+      }
+    }
+
+    // Select all buttons with the class 'button'
+    const buttons = document.querySelectorAll('.button');
+
+    // Attach the toggle function to each button using a loop
+    buttons.forEach(button => {
+      button.addEventListener('click', toggle);
+    });
+  </script>
+
+</body>
+</html>

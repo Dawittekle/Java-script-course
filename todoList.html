@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To DO List</title>
+    <style>
+      p{
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .todo-input,.input-date{
+        padding: 10px;
+      }
+      .add-button{
+      
+        background-color: rgb(5, 129, 5);
+        color:white;
+        border: none;
+        cursor: pointer;
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      .delete{
+        height: 35px;
+        background-color: red;
+        color: white;
+        border: none;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        cursor: pointer;
+
+      }
+      .display,.input-grid{
+        display: grid;
+        grid-template-columns: 200px 150px 100px;
+        gap: 10px;
+        margin-bottom: 10px;
+        align-items: center;
+
+      }
+
+        
+    </style>
+</head>
+<body>
+    <p>Todo List</p>
+    <div class="input-grid"> 
+      <input type="text" class="todo-input" placeholder="Todo name">
+      <input type="date" class="input-date">
+      <button onclick="
+        todo();
+        " class="add-button">Add</button>
+    </div>
+    
+    <div class="display"></div>
+
+
+
+
+  <script src="todo.js"></script>  
+</body>
+</html>
