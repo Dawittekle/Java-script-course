@@ -31,7 +31,7 @@
             cursor: pointer;
             margin-bottom: 50px;
         }
-        .reset-button{
+        .reset-button, .autoplay-button{
             font-size: 20px;
             padding: 10px;
             border: none;
@@ -60,15 +60,16 @@
 
     <p class="score"></p>
 
-    <button onclick="
-    score.win=0;score.lose=0;score.tie=0;
-    localStorage.removeItem(score);
-    updateScore()
+    <button class="reset-button">Reset the score</button>
+    <button class="autoplay-button" onclick="
+    autoPlay();
     
-    " class="reset-button">Reset the score</button>
+    ">Auto Play</button>
+    <p class="are-you-sure"></p>
    
 
     <script>
+
 
         let score= JSON.parse(localStorage.getItem('score'))||{
         win:0,
@@ -104,6 +105,19 @@
              .innerHTML= `win: ${score.win} lose: ${score.lose} tie: ${score.tie}`;
         }
         updateScore();
+
+        const bodyElement=document.querySelector('body')
+        bodyElement.addEventListener('keydown',(event)=>{
+
+            if(event.key==='r'){
+                playGame('rock');
+            }else if(event.key==='p'){
+                playGame('paper');
+            }else if(event.key==='s'){
+                playGame('scissor');
+            }
+
+        })
 
     function playGame (playerMove)
         {
@@ -164,6 +178,50 @@
         }
 
         console.log(JSON.parse(localStorage.getItem('score')));
+
+        let isPlaying = false
+        let intervalID ;
+
+        function autoPlay(){
+            if(!isPlaying){
+                intervalID= setInterval(()=>{
+                const playerMove=pickComputer();
+                playGame(playerMove);
+
+            },1000)
+            document.querySelector('.autoplay-button')
+             .innerHTML='Stop'
+            isPlaying=true;
+            }else {
+                clearInterval(intervalID);//remember inorder  to stop an interval
+                document.querySelector('.autoplay-button')
+                 .innerHTML='Auto play'
+                isPlaying=false;         //you need to use the intervalID
+
+            }
+            
+        }
+        const areyousure =document.querySelector('.are-you-sure');
+        const resetButtonElement= document.querySelector('.reset-button')
+        resetButtonElement.addEventListener('click',()=>{
+            areyousure.innerHTML=`Are you sure you want to reset?<button class="yes">yes</button> <button class="no">No</button>`;
+            const yes = document.querySelector('.yes')
+            const no = document.querySelector('.no')
+
+            yes.addEventListener('click',()=>{
+                score.win=0;score.lose=0;score.tie=0;
+                localStorage.removeItem(score);
+                updateScore();
+                areyousure.innerHTML='';
+            })
+            no.addEventListener('click',()=>{
+                areyousure.innerHTML='';
+
+            })
+
+            
+
+        })
 
     </script>
 </body>
