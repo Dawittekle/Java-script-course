@@ -1,8 +1,8 @@
 import { cart ,deleteCart,updateDeliveryOption} from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { products,getProduct } from "../../data/products.js";
 import {formatCurrency} from "../utils/money.js"
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { deliveryOption } from "../../data/deliveryOption.js";
+import { deliveryOption,getDeliveryOption } from "../../data/deliveryOption.js";
 
 export function renderPageSummery(){
 
@@ -10,20 +10,10 @@ export function renderPageSummery(){
 
     cart.forEach((cartItem)=>{
         const productID=cartItem.productID;
-        let matchingproduct;
-        products.forEach((product)=>{
-            if(product.id===productID){
-                matchingproduct=product
-            }
-        })
+        let matchingproduct =getProduct(productID);
+        
     const deliveryOptionNow = cartItem.deliveryOptionID;
-    let deliveryOptions;
-
-    deliveryOption.forEach((option)=>{
-      if(deliveryOptionNow===option.ID){
-        deliveryOptions=option;
-      }
-    });
+    let deliveryOptions = getDeliveryOption(deliveryOptionNow);
 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOptions.deliveryDate,'days');
