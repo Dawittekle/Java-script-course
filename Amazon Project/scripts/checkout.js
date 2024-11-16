@@ -1,4 +1,4 @@
-import { cart ,deleteCart} from "../data/cart.js";
+import { cart ,deleteCart,updateDeliveryOption} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
@@ -87,7 +87,7 @@ function deliveryOptionHTML(matchingproduct,cartItem){
 
    
    HTML+= `
-    <div class="delivery-option">
+    <div class="delivery-option js-delivery-option" data-product-id="${matchingproduct.id}" data-delivery-option-id="${delivery.ID}" >
           <input type="radio" ${ischecked ? 'checked' : ''}
             class="delivery-option-input"
             name="delivery-option-${matchingproduct.id}">
@@ -131,5 +131,11 @@ document.querySelector('.js-order-summery').
         innerHTML=`${cartQuantity} Items`;
   }
   updateCartQuantity();
-  
 
+document.querySelectorAll('.js-delivery-option').forEach((element)=>{
+  element.addEventListener('click',()=>{
+    const {productId,deliveryOptionId} = element.dataset;
+    updateDeliveryOption(productId,deliveryOptionId);
+    console.log("hello world!!")     
+  })
+})
