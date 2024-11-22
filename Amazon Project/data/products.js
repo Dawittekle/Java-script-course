@@ -7,6 +7,29 @@ export function getProduct(productID){
         })
         return matchingproduct;
 }
+
+class Product{ 
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor (productDetail){
+    this.id=productDetail.id;
+    this.image=productDetail.image;
+    this.name=productDetail.name;
+    this.rating=productDetail.rating;
+    this.priceCents=productDetail.priceCents
+
+  }
+
+  getRatingURL(){
+    return `images/ratings/rating-${this.rating.stars*10}.png`;
+  }
+
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -666,4 +689,8 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((productDetail)=>{
+  return new Product(productDetail);
+});
+
+console.log(products);
