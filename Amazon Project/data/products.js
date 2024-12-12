@@ -34,6 +34,7 @@ class Product{
 
 }
 
+
 export function loadproductsfetch(){
   const promise = fetch('https://supersimplebackend.dev/products').then((response)=>{
     return response.json();

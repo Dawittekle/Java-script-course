@@ -99,7 +99,7 @@ export function loadcarts(fun){
     const Xhr = new XMLHttpRequest();
     Xhr.addEventListener('load',()=>{
         console.log(Xhr.response)
-      
+      fun();
    });
   
     Xhr.open('GET','https://supersimplebackend.dev/cart');

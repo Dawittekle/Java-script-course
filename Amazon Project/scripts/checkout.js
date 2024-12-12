@@ -9,7 +9,27 @@ import { loadProducts, loadproductsfetch } from "../data/products.js";
 import { loadcarts } from "../data/cart-class.js";
 
 
+async function loadPage() {
+    await loadproductsfetch();
 
+    const greeting = await new Promise((resolve)=>{
+        loadcarts(()=>{
+            resolve("hello");
+        })
+    });
+
+    console.log(greeting);
+
+    renderPageSummery();
+    renderPaymentSummery(); 
+    
+  }
+
+loadPage();
+  
+  
+
+/*
 Promise.all([
     loadproductsfetch(),
     new Promise((resolve) => {
@@ -23,7 +43,7 @@ Promise.all([
     renderPaymentSummery();
 }).catch((error) => {
     console.error("Promise.all encountered an error:", error);
-});
+});*/
 
 
 
