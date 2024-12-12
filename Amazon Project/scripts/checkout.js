@@ -10,15 +10,21 @@ import { loadcarts } from "../data/cart-class.js";
 
 
 async function loadPage() {
-    await loadproductsfetch();
 
-    const greeting = await new Promise((resolve)=>{
+    try {
+
+        await loadproductsfetch();
+
+    const greeting = await new Promise((resolve,reject)=>{
+        //throw "error 2";
         loadcarts(()=>{
-            resolve("hello");
+            //reject("error 3");
+            resolve();
         })
     });
-
-    console.log(greeting);
+    } catch (error) {
+      console.log(error);  
+    }
 
     renderPageSummery();
     renderPaymentSummery(); 
@@ -26,8 +32,7 @@ async function loadPage() {
   }
 
 loadPage();
-  
-  
+
 
 /*
 Promise.all([
