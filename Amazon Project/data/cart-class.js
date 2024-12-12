@@ -95,6 +95,19 @@ const cart = new Cart('class-oop');
 
 console.log(cart);
 
+export function loadcarts(fun){
+    const Xhr = new XMLHttpRequest();
+    Xhr.addEventListener('load',()=>{
+        console.log(Xhr.response)
+      
+   });
+  
+    Xhr.open('GET','https://supersimplebackend.dev/cart');
+    Xhr.send();
+  }
+
+
+
 
 
 

@@ -71,3 +71,5 @@ export function addToCart(productID){
     matchingItem.deliveryOptionID=deliveryOptionID;
     saveToStorage();
  }
+
+ 

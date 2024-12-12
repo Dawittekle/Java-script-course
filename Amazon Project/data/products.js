@@ -28,8 +28,42 @@ class Product{
     return `images/ratings/rating-${this.rating.stars*10}.png`;
   }
 
+  extraInfo(){
+    return '';
+  }
+
 }
 
+export function loadproductsfetch(){
+  const promise = fetch('https://supersimplebackend.dev/products').then((response)=>{
+    return response.json();
+  }).then((responseData)=>{
+    products=responseData.map((productDetail)=>{
+      return new Product(productDetail);
+ });
+ console.log("load products")
+  }).then(()=>{
+    console.log("next step");
+  });
+  return promise;
+}
+
+export let products=[];
+
+export function loadProducts(fun){
+  const Xhr = new XMLHttpRequest();
+  Xhr.addEventListener('load',()=>{
+    products=JSON.parse(Xhr.response).map((productDetail)=>{
+      return new Product(productDetail);
+ });
+
+ console.log('load produts');
+ fun();
+  });
+  Xhr.open('GET','https://supersimplebackend.dev/products');
+  Xhr.send();
+}
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -690,7 +724,19 @@ export const products = [
     ]
   }
 ].map((productDetail)=>{
-  return new Product(productDetail);
-});
+     return new Product(productDetail);
+});*/
 
-console.log(products);
+class Clothing extends Product{
+  sizeChartLink;
+  constructor(productDetail){
+    super(productDetail);
+    this.sizeChartLink=productDetail.sizeChartLink
+  }
+
+  extraInfo(){
+    return `<a href = "${this.sizeChartLink}" target="_black">Size Chart</a>`;
+  }
+
+}
+

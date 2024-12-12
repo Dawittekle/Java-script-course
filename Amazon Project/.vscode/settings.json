@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "/amazon.html"
+    "livePreview.defaultPreviewPath": "/amazon.html",
+    "liveServer.settings.port": 5501
 }
